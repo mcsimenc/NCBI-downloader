@@ -1,0 +1,323 @@
+<head>
+  <script src="https://use.fontawesome.com/d8fb6c19ae.js"></script>
+</head>
+
+<template name="searchTermTemplate">
+  <tr class="row" id={{row}}>
+                <div class="search-term-selects">
+
+                  <td>
+                    <select class="andornot" name="andornot{{row}}" id="andornot{{row}}">
+                      <option value="AND" selected="selected">AND</option>
+                      <option value="OR">OR</option>
+                      <option value="NOT">NOT</option>
+                    </select>
+                  </td>
+
+                  <td>
+                    <select class="ncbifield" name="ncbifield{{row}}" id="ncbifield{{row}}">
+                      <option value="Accession">Accession</option>
+                      <option value="All+Fields" selected="selected">All Fields</option>
+                      <option value="Assembly">Assembly</option><option value="Author">Author</option>
+                      <option value="BioProject">BioProject</option>
+                      <option value="BioSample">BioSample</option>
+                      <option value="Breed">Breed</option>
+                      <option value="Component+Accession">Component Accession</option>
+                      <option value="Cultivar">Cultivar</option>
+                      <option value="Division">Division</option>
+                      <option value="EC/RN+Number">EC/RN Number</option>
+                      <option value="Feature+key">Feature key</option>
+                      <option value="Filter">Filter</option>
+                      <option value="Gene+Name">Gene Name</option>
+                      <option value="Isolate">Isolate</option>
+                      <option value="Issue">Issue</option>
+                      <option value="Journal">Journal</option>
+                      <option value="Keyword">Keyword</option>
+                      <option value="Modification+Date">Modification Date</option>
+                      <option value="Organism">Organism</option>
+                      <option value="Page+Number">Page Number</option>
+                      <option value="Primary+Accession">Primary Accession</option>
+                      <option value="Primary+Organism">Primary Organism</option>
+                      <option value="Properties">Properties</option>
+                      <option value="Protein+Name">Protein Name</option>
+                      <option value="Publication+Date">Publication Date</option>
+                      <option value="SeqID+String">SeqID String</option>
+                      <option value="Sequence+Length">Sequence Length</option>
+                      <option value="Strain">Strain</option>
+                      <option value="Substance+Name">Substance Name</option>
+                      <option value="Text+Word">Text Word</option>
+                      <option value="Title">Title</option>
+                      <option value="Volume">Volume</option>
+                    </select>
+                  </td>
+                </div>
+
+                <td>
+                  <div class="search-term-field">
+                    <input type="text" name="term{{row}}" id="term{{row}}" placeholder="e.g. ribosomal RNA">
+                  </div>
+                </td>
+                <td>
+                  <button class="delete-btn" type="button" value="{{row}}">-</button>
+                </td>
+                <td>
+                  <button class="add-btn" type="button">+</button>
+                </td>
+              </tr>
+</template>
+
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>NCBI sequence downloader</h1>
+    </header>
+      <br>
+
+      <form class="search-params" id="form1">
+
+        <div class="search-fields">
+
+          <div class="max-records">
+            <button type="submit" id="maxRecordsBtn" name="maxRecordsBtn">Max</button>
+            <label class="top-search-label" for="retmax">records</label>
+            <input class="top-search-input" list="retmax" placeholder="e.g. 12" name="retmax" id="retmax-entry">
+              <datalist id="retmax">
+                <option value=1></option>
+                <option value=5></option>
+                <option value=10></option>
+                <option value=25></option>
+                <option value=50></option>
+                <option value=100></option>
+                <option value=250></option>
+                <option value=500></option>
+              </datalist>
+          </div>
+
+
+          <div id="seq-length">
+            <label for="seq-length-slider">Limit DNA sequence length (bp)</label>
+            <input value=0 name="minSeqLength">
+            <p id="spacer">to</p>
+            <input value=15000 name="maxSeqLength">
+            <!--<div id="seq-length-slider"></div>-->
+          </div>
+
+          <div class="taxon-input">
+            <label class="top-search-label" for="taxon-entry">Taxon</label>
+            <input class="top-search-input" type="text" name="taxon" id="taxon-entry" placeholder="e.g. Mopalia">
+          </div>
+
+          <div class="search-term-line">
+            <table>
+              <tbody>
+              {{#each searchTermHelper}}
+                {{> searchTermTemplate}}
+              {{/each}}
+              </tbody>
+            </table>
+
+
+          </div>
+
+        
+        <!-- Submit button -->
+
+        <div class="center-component">
+
+          <div class="searchType">
+            <div>
+              <label class="searchTypeLabel">
+              <input type="checkbox" id="completeGenome" class="checkbox">
+              <span class="mito-gene-checkbox"></span>
+              <span class="mito-gene-label">Search mitochondrial genomes</span>
+              </label>
+            </div>
+
+            <div>
+              <label class="searchTypeLabel">
+              <input checked type="checkbox" id="nonGenome" class="checkbox">
+              <span class="mito-gene-checkbox"></span>
+              <span class="mito-gene-label">Search genes only</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="colins-submit">
+            <svg width="196" height="70" 
+                 viewPort="0 0 196 70" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg">
+              
+              <rect class="btn-shape btn-bg"
+                    x="3" y="3" 
+                    width="190" height="64"
+                    rx="32" ry="32" 
+                    fill="#ffffff"
+                    fill-opacity="1"
+                    stroke="#ccc" stroke-width="4"
+                    />	
+              <rect class="btn-shape btn-color"
+                    x="3" y="3" 
+                    width="190" height="64"
+                    rx="32" ry="32" 
+                    fill="#ffffff"
+                    fill-opacity="0"
+                    stroke="rgb(30,205,151)" stroke-width="4"
+                    />
+              <text class="checkNode" x="96" y="40" 
+                    font-family="Montserrat" 
+                    font-size="22"
+                    fill-opacity="1"
+                    text-anchor="middle"
+                    fill="rgb(255,255,255)" >
+                ✔
+              </text>
+              <text class="textNode" x="96" y="40" 
+                    transform="scale(1)"
+                    font-family="Montserrat" 
+                    font-size="16"
+                    fill-opacity="1"
+                    text-anchor="middle"
+                    fill="rgb(30,205,151)" >
+                Submit
+              </text>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+
+	<!-- MITO GENE SEARCH CHECKBOXES -->
+
+        <div class="mito-genes-checkboxes">
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="ATP6" id="ATP6" value="ATP6" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">ATP6</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="ATP8" id="ATP8" value="ATP8" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">ATP8</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="COI" id="COI" value="COI" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">COI</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="COII" id="COII" value="COII" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">COII</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="COIII" id="COIII" value="COIII" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">COIII</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="CYB" id="CYB" value="CYB" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">CYB</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD1" id="NAD1" value="NAD1" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD1</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD2" id="NAD2" value="NAD2" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD2</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD3" id="NAD3" value="NAD3" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD3</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD4" id="NAD4" value="NAD4" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD4</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD4L" id="NAD4L" value="NAD4L" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD4L</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD5" id="NAD5" value="NAD5" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD5</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="NAD6" id="NAD6" value="NAD6" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">NAD6</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="rdna16S" id="rdna16S" value="rdna16S" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">16S</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="mito-gene">
+            <input type="checkbox" name="rdna12S" id="rdna12S" value="rdna12S" class="checkbox">
+            <span class="mito-gene-checkbox"></span>
+            <span class="mito-gene-label">12S</span>
+            </label>
+          </div>
+
+      </div>
+
+
+
+    </form>
+  </div>
+</body>

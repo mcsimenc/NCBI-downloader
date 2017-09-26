@@ -1,0 +1,305 @@
+/* CSS declarations go here */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: sans-serif;
+  background-color: #315481;
+  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+header {
+  background: #d2edf4;
+  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  padding: 20px 15px 20px 15px;
+  position: relative;
+}
+ 
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-right: 0em;
+}
+
+
+input::placeholder {
+  color: #D1D1D1;
+}
+
+section {
+  clear: both;
+  margin: 0 50px; }
+
+.container {
+  max-width: 900px;
+  z-index: 0;
+  margin: 0 auto;
+  min-height: 100%;
+  background: white;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.search-fields {
+  margin-left: 30px;
+  float:left;
+  width:76%
+}
+
+.search-fields input {
+  width: 100%;
+  padding :0.5em 0.5em;
+  margin: 0.1em 0em;
+  margin-bottom: 0.2em;
+  font-size: 1.0em;
+  border-radius: 4px;
+  border: 1px solid #D9D9D9;
+}
+
+.max-records {
+  float: left;
+  margin-top: 9px;
+  margin-right: 18px;
+  margin-left: 5px;
+  width: 18%;
+}
+
+.max-records input {
+  margin-top: 5px;
+}
+
+.max-records button {
+  font-weight:bold;
+}
+
+.taxon-input {
+  margin-top:-18px;
+  margin-right: 19px;
+  float:right;
+  width: 40.4%;
+}
+
+.taxon-input input{
+  margin-top: 7px
+}
+
+#seq-length {
+  margin-top: 10px;
+  margin-left: 140px;
+  width: 250px;
+}
+
+/*
+#seq-length div#seq-length-slider {
+  margin-bottom: 10px;
+  margin-top: 4px;
+  margin-right: 7px;
+  width: 210px;
+  float: right;
+}
+*/
+
+#seq-length p {
+  color: #8a9a9b;
+  margin-left:5px;
+  margin-right: 9px;
+  margin-bottom: 9px;
+  width: 10px;
+  float: left;
+}
+
+#seq-length label {
+  margin-bottom: 2px;
+  margin-left: 2px;
+  float: left;
+}
+
+#seq-length input {
+  margin-top: 5px;
+  width: 100px;
+  float: left;
+  display: inline-block;
+}
+
+
+.search-term-selects {
+  float: left;
+  margin-top: 5px;
+}
+
+.search-term-field {
+  float: left;
+  margin-left: 10px;
+  width: 438px;
+}
+
+
+/* Mitochondrial genes pre-made searches, checkboxes on right side of page */
+
+
+.mito-gene, .searchTypeLabel {
+  border-top: 2px solid #f0f2f3;
+  display: block;
+  line-height: 24px;
+  padding: 6px 15px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.searchType {
+  margin-top: 10px;
+  margin-bottom: -12px;
+  margin-left: 50px;
+  display: block;
+  float: left;
+}
+
+.mito-gene + .mito-gene {
+  border-top: 1px solid #f0f2f3;
+}
+
+.mito-genes-checkboxes {
+  float: right;
+  width:16%;
+}
+
+.mito-gene-checkbox {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 12px;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #c4cbd2;
+  border-radius: 12px;
+}
+
+.mito-gene-checkbox:before {
+  border: solid #1e81cc;
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -5px 0 0 -5.5px;
+  height: 7px;
+  width: 11px;
+  border-width: 0 0 4px 4px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox:checked ~ .mito-gene-checkbox {
+  border-color: #1e81cc;
+}
+
+.checkbox:checked ~ .mito-gene-checkbox:before {
+  display: block;
+}
+
+.checkbox:hover:not(:checked) ~ .mito-gene-checkbox:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -5px 0 0 -5.5px;
+  height: 7px;
+  width: 11px;
+  border: solid #C2C2C2;
+  border-width: 0 0 2px 2px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.mito-gene-label {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #8a9a9b;
+}
+
+.checkbox:checked ~ .mito-gene-label {
+  color: #1e81cc;
+}
+
+
+
+button.colins-submit {
+  margin-top: -100px;
+  margin-left: 410px;
+  background: transparent;
+  border: none;
+}
+button.colins-submit.is-active {
+  cursor: default;
+}
+button.colins-submit:focus {
+  outline: none;
+}
+button.colins-submit::-moz-focus-inner {
+  border: 0;
+}
+button.colins-submit svg text {
+  font-family: 'Montserrat', sans-serif;
+}
+button.colins-submit svg text.textNode {
+  fill: #1e81cc;
+}
+button.colins-submit svg text.checkNode {
+  fill-opacity: 0;
+}
+button.colins-submit svg rect.btn-shape.btn-bg {
+  stroke: #c9c8c8;
+  fill: white;
+}
+button.colins-submit svg rect.btn-shape.btn-color {
+  stroke: #1e81cc;
+  fill: white;
+  stroke-dasharray: 453;
+  stroke-dashoffset: 0;
+}
+
+p {
+  font-family: Montserrat, sans-serif;
+  color: #1e81cc;
+  font-size: 1rem;
+  max-width: 330px;
+}
+p a {
+  color: #1e81cc;
+}
+p a:hover, p a:active {
+  color: #07a1e4;
+}
+p a:visited {
+  color: #368db5;
+}
+
