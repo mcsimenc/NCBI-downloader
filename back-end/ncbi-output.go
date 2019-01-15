@@ -553,7 +553,7 @@ func main() {
 			num_ids ++
 		}
 
-		if num_ids == 500 {
+		if num_ids == 200 {
 			xmlLines := EfetchPOSTrequest(gb_ids)
 			processGBSeqXMLrecords(xmlLines, geneNames, *minSeqLen, *maxSeqLen)
 			gb_ids = ""
