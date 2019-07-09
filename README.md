@@ -4,4 +4,4 @@ D. J. Eernisse acknowledges support from National Science Foundation grant DEB-1
 
 NCBI Sequence Downloader is free and open-source software made available under the GPL 3.0 License. See [LICENSE](https://github.com/mcsimenc/NCBI-downloader/blob/master/LICENSE) for details.
 
-The app is live at [NCBI Downloader](http://13.56.187.242) and works best viewed in Google Chrome.
+The app is live at [NCBI Downloader](http://13.56.187.242) and has been tested on Google's web browser.
